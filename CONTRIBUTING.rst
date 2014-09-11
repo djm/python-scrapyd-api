@@ -72,7 +72,7 @@ Ready to contribute? Here's how to set up ``python-scrapyd-api`` for local devel
         $ pip install tox
         $ tox
 
-7. Add yourself to the AUTHORS.rst file as a contributor.
+7. Add yourself to the ``AUTHORS.rst`` file as a contributor.
 
 8. Commit your changes and push your branch to GitHub. Please use a suitable
    git commit message (summary line, two line breaks, detailed description)::
