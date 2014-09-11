@@ -2,10 +2,9 @@
 Contributing
 ============
 
-python-scrapyd-api is free & open-source software and therefore every little
-bit helps. Whether you're correcting a typo or bringing the release up-to-date
-with 3rd party changes, all help is welcome and appreciated.
-
+``python-scrapyd-api`` is free & open-source software and therefore every little
+bit helps. Whether you're simply correcting a typo or bringing the release
+up-to-date with 3rd party changes, all help is welcome and very appreciated.
 
 Types of Contributions
 ----------------------

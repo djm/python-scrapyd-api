@@ -17,7 +17,7 @@ Allows a Python application to talk to, and therefore control, Scrapyd_.
 
 * Free software: BSD license.
 * `Full documentation`_.
-* on the `Python Package Index (PyPI)`_.
+* On the `Python Package Index (PyPI)`_.
 * Scrapyd's `API Documentation`_.
 
 .. _Scrapyd: https://github.com/scrapy/scrapyd
