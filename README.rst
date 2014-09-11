@@ -13,15 +13,16 @@ Scrapyd API
 
 
 A Python wrapper for working with Scrapyd_'s API_.
+Allows a Python application to talk to, and therefore control, Scrapyd_.
 
 * Free software: BSD license.
-* `Full documentation`_ on ReadTheDocs.
-* This project on the `Python Package Index (PyPI)`_.
+* `Full documentation`_.
+* on the `Python Package Index (PyPI)`_.
 * Scrapyd's `API Documentation`_.
 
 .. _Scrapyd: https://github.com/scrapy/scrapyd
 .. _API: http://scrapyd.readthedocs.org/en/latest/api.html
-.. _Python Package Index (PyPI)_: https://pypi.python.org/pypi/python-scrapyd-api/
+.. _Python Package Index (PyPI): https://pypi.python.org/pypi/python-scrapyd-api/
 .. _Full documentation: http://python-scrapyd-api.rtfd.org
 .. _API Documentation: http://scrapyd.readthedocs.org/en/latest/api.html
 
@@ -52,6 +53,7 @@ Please refer to the full documentation_ for usage but to get you started:
     >>> scrapyd.add_version('project_name', 'version_name', egg)
     # Returns the number of spiders in the project.
     3
+    >>> egg.close()
 
 **Cancel a scheduled job**:
 
@@ -170,16 +172,19 @@ To run the tests:
     # or use PyTest directly:
     $ py.test
 
-To see the coverage report:
+To see coverage:
 
 .. code:: bash
 
+    # In the terminal:
+    $ py.test --cov scrapyd_api tests/
+    # As a browseable HTML report:
     $ make coverage
 
 
 Please run ``make help`` or see the Makefile_ for other development related commands.
 
-.. CONTRIBUTING.rst: https://github.com/djm/python-scrapyd-api/blob/master/CONTRIBUTING.rst
-.. Makefile: https://github.com/djm/python-scrapyd-api/blob/master/Makefile
+.. _CONTRIBUTING.rst: https://github.com/djm/python-scrapyd-api/blob/master/CONTRIBUTING.rst
+.. _Makefile: https://github.com/djm/python-scrapyd-api/blob/master/Makefile
 
 
