@@ -67,8 +67,7 @@ Ready to contribute? Here's how to set up ``python-scrapyd-api`` for local devel
 
         $ python setup.py test
 
-   c. That the tests run for all supported versions of Python. This requires
-   tox and having the various versions of Python installed::
+   c. That the tests run for all supported versions of Python. This requires tox and having the various versions of Python installed::
 
         $ pip install tox
         $ tox
