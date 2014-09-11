@@ -10,10 +10,11 @@ with 3rd party changes, all help is welcome and appreciated.
 Types of Contributions
 ----------------------
 
-Report Bugs
-~~~~~~~~~~~
+Reporting Bugs
+~~~~~~~~~~~~~~
 
-Report bugs at using `Github Issues`_.
+Please report bugs by utilising `Github Issues`_. Simply check if your issue
+exists first, and if not, submit a new issue.
 
 .. _`Github Issues`: https://github.com/djm/python-scrapyd-api/issues
 
@@ -29,53 +30,59 @@ If you are reporting a bug:
 Submitting Code
 ~~~~~~~~~~~~~~~
 
-Ready to contribute? Here's how to set up `python-scrapyd-api` for local development.
+Ready to contribute? Here's how to set up ``python-scrapyd-api`` for local development.
 
-1. Fork the `python-scrapyd-api` repo on GitHub.
+1. Fork the ``python-scrapyd-api`` repo on GitHub.
 
 2. Clone your fork locally::
 
     $ git clone git@github.com:your_name_here/python-scrapyd-api.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
+3. Install your local copy into a ``virtualenv``. Assuming you have ``virtualenvwrapper`` installed, this is how you set up your fork for local development::
 
     $ mkvirtualenv python-scrapyd-api
     $ cd python-scrapyd-api/
     $ python setup.py develop
 
-4. Create a branch for local development::
+4. Install the requirements needed to develop on ``python-scrapyd-api``. That
+   includes doc writing and testing tools::
+
+    $ pip install -r requirements.txt
+
+
+5. Create a branch for local development::
 
     $ git checkout -b name-of-your-bugfix-or-feature
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check the following things:
+6. When you're done making changes, check the following things:
 
-   a. That your changes pass the flake8 linter (use common sense though).::
+   a. That your changes pass the flake8 linter (use common sense though)::
 
-    $ pip install flake8
-    $ flake8 python-scrapyd-api tests
+        $ pip install flake8
+        $ flake8 python-scrapyd-api tests
 
-   b. That the tests still run.::
+   b. That the tests still run::
 
-    $ python setup.py test
+        $ python setup.py test
 
    c. That the tests run for all supported versions of Python. This requires
-   tox and having the various versions of Python installed.::
+   tox and having the various versions of Python installed::
 
-    $ pip install tox
-    $ tox
+        $ pip install tox
+        $ tox
 
-6. Add yourself to the AUTHORS.rst file as a contributor.
+7. Add yourself to the AUTHORS.rst file as a contributor.
 
-7. Commit your changes and push your branch to GitHub. Please use a suitable
-   git commit message (summary line, two line breaks, detailed description).::
+8. Commit your changes and push your branch to GitHub. Please use a suitable
+   git commit message (summary line, two line breaks, detailed description)::
 
-    $ git add .
-    $ git commit
-    $ git push origin name-of-your-bugfix-or-feature
+        $ git add .
+        $ git commit
+        $ git push origin name-of-your-bugfix-or-feature
 
-8. Submit a pull request through the GitHub website.
+9. Submit a pull request through the GitHub website.
 
 Pull Request Guidelines
 -----------------------
@@ -83,10 +90,9 @@ Pull Request Guidelines
 Before you submit a pull request, check that it meets these guidelines:
 
 1. The pull request should include tests, especially if fixing a regression.
-2. If the pull request adds functionality, the docs should be updated. Put
-   your new functionality into a function with a docstring, and add the
-   feature to the list in README.rst.
-3. The pull request should work for Python 2.6, 2.7, 3.3 and 3.4. Check
-   TravisCI_ and make sure that the tests pass for all supported Python versions.
+2. If the pull request adds functionality, the docs should be updated to
+   document that functionality.
+3. The pull request should work for Python 2.6, 2.7, 3.3 and 3.4.
+   Check TravisCI_ and make sure that the tests pass for all supported Python versions.
 
 .. _TravisCI: https://travis-ci.org/djm/python-scrapyd-api/pull_requests
