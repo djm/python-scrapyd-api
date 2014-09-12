@@ -13,6 +13,7 @@ Scrapyd API
 
 
 A Python wrapper for working with Scrapyd_'s API_.
+
 Allows a Python application to talk to, and therefore control, Scrapyd_.
 
 * Free software: BSD license.
