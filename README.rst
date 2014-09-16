@@ -22,7 +22,7 @@ python-scrapyd-api
 A Python wrapper for working with Scrapyd_'s API_.
 
 Allows a Python application to talk to, and therefore control, the Scrapy_
-daemon Scrapyd_.
+daemon: Scrapyd_.
 
 * Free software: BSD license.
 * `Full documentation`_.
