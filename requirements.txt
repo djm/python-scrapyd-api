@@ -3,6 +3,7 @@ requests==2.4.1
 
 # Docs
 sphinx==1.2.3
+sphinx_rtd_theme==0.1.6
 
 # Testing
 pytest==2.6.2
