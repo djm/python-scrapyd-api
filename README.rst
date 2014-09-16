@@ -1,6 +1,6 @@
-===========
-Scrapyd API
-===========
+==================
+python-scrapyd-api
+==================
 
 .. image:: https://badge.fury.io/py/python-scrapyd-api.png
     :target: http://badge.fury.io/py/python-scrapyd-api
@@ -14,13 +14,15 @@ Scrapyd API
 
 A Python wrapper for working with Scrapyd_'s API_.
 
-Allows a Python application to talk to, and therefore control, Scrapyd_.
+Allows a Python application to talk to, and therefore control, the Scrapy_
+daemon Scrapyd_.
 
 * Free software: BSD license.
 * `Full documentation`_.
 * On the `Python Package Index (PyPI)`_.
 * Scrapyd's `API Documentation`_.
 
+.. _Scrapy: http://scrapy.org/
 .. _Scrapyd: https://github.com/scrapy/scrapyd
 .. _API: http://scrapyd.readthedocs.org/en/latest/api.html
 .. _Python Package Index (PyPI): https://pypi.python.org/pypi/python-scrapyd-api/
@@ -37,7 +39,7 @@ Easiest installation is via `pip`::
 Quick Usage
 -----------
 
-Please refer to the full documentation_ for usage but to get you started:
+Please refer to the full documentation_ for more detailed usage but to get you started:
 
 .. code:: python
 
@@ -141,7 +143,7 @@ Please refer to the full documentation_ for usage but to get you started:
 
 .. code:: python
 
-    >> scrapyd.schedule('project_name', 'spider_name', extra_attribute='value')
+    >>> scrapyd.schedule('project_name', 'spider_name', extra_attribute='value')
     # NB: 'project', 'spider' and 'settings' are reserved kwargs for this
     # method; extra attributes can be called any other Python-acceptable name.
     u'25b6588ef67333e38a0e080027880de7'
@@ -150,42 +152,15 @@ Please refer to the full documentation_ for usage but to get you started:
 Contributing code and/or running the tests
 ------------------------------------------
 
-Thanks for wanting to help out!
+Please see DEVELOPMENT.rst_ or refer to the `full documentation`_.
 
-* Bugs/feature requests should be filed using the Github Issues system.
-* Code contributions/pull requests, please read CONTRIBUTING.RST_ first.
-
-To get started:
-
-.. code:: bash
-
-    $ git clone git@github.com:djm/python-scrapyd-api.git
-    $ mkvirtualenv python-scrapyd-api
-    $ cd python-scrapyd-api
-    $ python setup.py develop
-    $ pip install -r require
-
-To run the tests:
-
-.. code:: bash
-
-    $ python setup.py test
-    # or use PyTest directly:
-    $ py.test
-
-To see coverage:
-
-.. code:: bash
-
-    # In the terminal:
-    $ py.test --cov scrapyd_api tests/
-    # As a browseable HTML report:
-    $ make coverage
+.. _DEVELOPMENT.rst: https://github.com/djm/python-scrapyd-api/blob/master/CONTRIBUTING.rst
+.. _full documentation: http://python-scrapyd-api.rtfd.org
 
 
-Please run ``make help`` or see the Makefile_ for other development related commands.
+License
+-------
 
-.. _CONTRIBUTING.rst: https://github.com/djm/python-scrapyd-api/blob/master/CONTRIBUTING.rst
-.. _Makefile: https://github.com/djm/python-scrapyd-api/blob/master/Makefile
+2-clause BSD. See the full LICENSE_.
 
-
+.. _LICENSE: https://github.com/djm/python-scrapyd-api/blob/master/LICENSE 
