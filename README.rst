@@ -8,11 +8,15 @@ python-scrapyd-api
 
 .. image:: https://travis-ci.org/djm/python-scrapyd-api.png?branch=master
         :target: https://travis-ci.org/djm/python-scrapyd-api
-        :alt: The Travis-CI Build Status
+        :alt: Built Status on Travis-CI
+
+.. image:: https://coveralls.io/repos/djm/python-scrapyd-api/badge.png
+        :target: https://coveralls.io/r/djm/python-scrapyd-api
+        :alt: Coverage Status on Coveralls
 
 .. image:: https://readthedocs.org/projects/python-scrapyd-api/badge/?version=latest
         :target: http://python-scrapyd-api.readthedocs.org/en/latest/
-        :alt: Documentation Status
+        :alt: Documentation Status on ReadTheDocs
 
 
 A Python wrapper for working with Scrapyd_'s API_.
