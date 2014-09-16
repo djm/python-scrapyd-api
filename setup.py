@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-import os
 import sys
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
@@ -9,9 +7,6 @@ from setuptools.command.test import test as TestCommand
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
-
-tests_require = ['mock', 'responses']
-docs_require = ['sphinx']
 
 
 class PyTest(TestCommand):
@@ -28,9 +23,7 @@ class PyTest(TestCommand):
 
 
 if sys.argv[-1] == 'publish':
-    os.system("python setup.py sdist upload")
-    os.system("python setup.py bdist_wheel upload")
-    print("You probably want to also git tag the version now.")
+    print("Use `make release` instead.")
     sys.exit()
 
 
@@ -70,10 +63,5 @@ setup(
     ],
     cmdclass={
         'test': PyTest
-    },
-    extras_require={
-        'tests': tests_require,
-        'docs': docs_require
-    },
-    tests_require=tests_require
+    }
 )
