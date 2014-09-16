@@ -96,15 +96,26 @@ Please refer to the full documentation_ for more detailed usage but to get you s
     >>> scrapyd.list_jobs('project_name')
     # Returns a dict of running, finished and pending job lists.
     {
-        'running': [
-            {u'id': u'14a65...b27ce', u'spider': u'spider_name'},
-            {u'id': u'78fe2...1278d', u'spider': u'spider_name2'},
-        ]
-        'finished': [
-            ...
-        ]
         'pending': [
-            ...
+            {
+                u'id': u'24c35...f12ae', 
+                u'spider': u'spider_name'
+            },
+        ],
+        'running': [
+            {
+                u'id': u'14a65...b27ce',
+                u'spider': u'spider_name',
+                u'start_time': u'2014-06-17 22:45:31.975358'
+            },
+        ],
+        'finished': [
+            {
+                u'id': u'34c23...b21ba',
+                u'spider': u'spider_name',
+                u'start_time': u'2014-06-17 22:45:31.975358',
+                u'end_time': u'2014-06-23 14:01:18.209680'
+            }
         ]
     }
 

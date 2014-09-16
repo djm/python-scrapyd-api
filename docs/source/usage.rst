@@ -83,7 +83,7 @@ When no ``client`` argument is passed, the wrapper uses the default client
 which can be found at ``scrapyd_api.client.Client``. This default client is
 effectively a small modification of Requests_' ``Session`` client which
 knows how to handle errors from Scrapyd in a more graceful fashion by raising
-a ``ScrapydError`` exception.
+a ``ScrapydResponseError`` exception.
 
 .. _Requests: http://python-requests.org
 
@@ -106,7 +106,7 @@ At the very minimum the client object should support:
 - the responses being parsed in a similar fashion to the
   ``scrapd_api.client.Client._handle_response`` method which has the ability
   to load the JSON returned and check the "status" which gets sent from
-  Scrapyd, raising the ``ScrapydError`` exception as required.
+  Scrapyd, raising the ``ScrapydResponseError`` exception as required.
 
 Calling the API
 ---------------
@@ -122,7 +122,6 @@ Add a version
 
 Uploads a new version of a project. See the `add version endpoint`_ on Scrapyd's
 documentation.
-
 
 .. _add version endpoint: http://scrapyd.readthedocs.org/en/latest/api.html#addversion-json
 
@@ -220,23 +219,34 @@ Lists all running, finished & pending spider jobs for a given project. See the
 
 - **project** *(string)* The name of the project to list jobs for.
 
-**Returns**: *(dict)* A dictionary with keys ``running``, ``finished`` and
-``pending``, each containing a list of job dicts. Each job dict has keys for
+**Returns**: *(dict)* A dictionary with keys ``pending``, ``running`` and
+``finished``, each containing a list of job dicts. Each job dict has keys for
 the ``id`` and the name of the ``spider`` which ran the job.
 
 .. code-block:: python
 
     >>> scrapyd.list_jobs('project_name')
     {
-        'running': [
-            {u'id': u'14a65...b27ce', u'spider': u'spider_name'},
-            {u'id': u'78fe2...1248d', u'spider': u'spider_name2'},
-        ]
-        'finished': [
-            {u'id': u'34c23...b21ba', u'spider': u'spider_name'},
-        ]
         'pending': [
-            {u'id': u'24c35...f12ae', u'spider': u'spider_name'},
+            {
+                u'id': u'24c35...f12ae', 
+                u'spider': u'spider_name'
+            },
+        ],
+        'running': [
+            {
+                u'id': u'14a65...b27ce',
+                u'spider': u'spider_name',
+                u'start_time': u'2014-06-17 22:45:31.975358'
+            },
+        ],
+        'finished': [
+            {
+                u'id': u'34c23...b21ba',
+                u'spider': u'spider_name',
+                u'start_time': u'2014-06-17 22:45:31.975358',
+                u'end_time': u'2014-06-23 14:01:18.209680'
+            }
         ]
     }
 
@@ -359,6 +369,16 @@ Handling Exceptions
 -------------------
 
 As this library relies on the Requests_ library to handle HTTP connections,
-the exceptions raised 
+the exceptions raised by Requests itself for such things as hard connection
+errors, timeouts etc can be found in the `Requests exceptions documentation`_.
 
 .. _Requests: http://python-requests.org
+.. _Requests exceptions documentation: http://docs.python-requests.org/en/latest/api/?highlight=exceptions#exceptions 
+
+However, when the problem is an error Scrapyd has returned itself instead,
+the ``scrapyd_api.exceptions.ScrapydResponseError`` will be raised with the
+applicable error message sent back from the Scrapyd API.
+
+This works by simply checking the JSON return's `status` key and raising
+the exception with the return's `message` value, allowing the developer
+to debug the response.
