@@ -1,13 +1,13 @@
 =======
-Credits
+Authors
 =======
 
-Development Lead
-----------------
+Initial Work
+------------
 
 * Darian Moody <mail@djm.org.uk>
 
 Contributors
 ------------
 
-None yet. Why not be the first?
+Soon..
