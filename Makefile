@@ -35,12 +35,9 @@ coverage:
 	open htmlcov/index.html
 
 docs:
-	rm -f docs/python-scrapyd-api.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ scrapyd_api
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
-	open docs/_build/html/index.html
+	open docs/build/html/index.html
 
 release: clean
 	python setup.py sdist bdist_wheel upload
