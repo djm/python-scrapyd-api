@@ -10,7 +10,8 @@ Documentation for python-scrapyd-api
 Scrapyd_'s API_; it allows a Python application to talk to, and therefore
 control, the Scrapy Daemon.
 
-It is built on top of the Requests_ library.
+It is built on top of the Requests_ library and supports Python 2.6, 2.7, 3.3
+& 3.4.
 
 .. _Scrapyd: https://github.com/scrapy/scrapyd
 .. _API: http://scrapyd.readthedocs.org/en/latest/api.html
