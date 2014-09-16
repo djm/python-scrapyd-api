@@ -152,7 +152,8 @@ Please refer to the full documentation_ for more detailed usage but to get you s
 
     >>> scrapyd.schedule('project_name', 'spider_name', extra_attribute='value')
     # NB: 'project', 'spider' and 'settings' are reserved kwargs for this
-    # method; extra attributes can be called any other Python-acceptable name.
+    # method and therefore these names should be avoided when trying to pass
+    # extra attributes to the spider init.
     u'25b6588ef67333e38a0e080027880de7'
 
 
