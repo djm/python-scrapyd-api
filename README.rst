@@ -3,13 +3,19 @@ python-scrapyd-api
 ==================
 
 .. image:: https://badge.fury.io/py/python-scrapyd-api.png
-    :target: http://badge.fury.io/py/python-scrapyd-api
+        :target: http://badge.fury.io/py/python-scrapyd-api
 
 .. image:: https://travis-ci.org/djm/python-scrapyd-api.png?branch=master
         :target: https://travis-ci.org/djm/python-scrapyd-api
+        :alt: The Travis-CI Build Status
 
 .. image:: https://pypip.in/d/python-scrapyd-api/badge.png
         :target: https://pypi.python.org/pypi/python-scrapyd-api
+        :alt: The PyPI version
+
+.. image:: https://readthedocs.org/projects/python-scrapyd-api/badge/?version=latest
+        :target: https://readthedocs.org/projects/python-scrapyd-api/?badge=latest
+        :alt: Documentation Status
 
 
 A Python wrapper for working with Scrapyd_'s API_.
