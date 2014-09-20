@@ -175,7 +175,7 @@ Contributing code and/or running the tests
 
 Please see DEVELOPMENT.rst_ or refer to the `full documentation`_.
 
-.. _DEVELOPMENT.rst: https://github.com/djm/python-scrapyd-api/blob/master/CONTRIBUTING.rst
+.. _DEVELOPMENT.rst: https://github.com/djm/python-scrapyd-api/blob/master/DEVELOPMENT.rst
 .. _full documentation: http://python-scrapyd-api.rtfd.org
 
 
@@ -184,4 +184,4 @@ License
 
 2-clause BSD. See the full LICENSE_.
 
-.. _LICENSE: https://github.com/djm/python-scrapyd-api/blob/master/LICENSE 
+.. _LICENSE: https://github.com/djm/python-scrapyd-api/blob/master/LICENSE
