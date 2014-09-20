@@ -1,5 +1,8 @@
 *.py[cod]
 
+# Mac OSX
+.DS_Store
+
 # C extensions
 *.so
 
@@ -29,11 +32,6 @@ htmlcov
 
 # Translations
 *.mo
-
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
 
 # Complexity
 output/*.html
