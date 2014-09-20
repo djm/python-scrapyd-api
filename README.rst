@@ -24,12 +24,11 @@ A Python wrapper for working with Scrapyd_'s API_.
 Allows a Python application to talk to, and therefore control, the Scrapy_
 daemon: Scrapyd_.
 
-Supports Python 2.6, 2.7, 3.3 & 3.4.
-
-* Free software: BSD license.
-* `Full documentation`_.
-* On the `Python Package Index (PyPI)`_.
-* Scrapyd's `API Documentation`_.
+* Supports Python 2.6, 2.7, 3.3 & 3.4
+* Free software: BSD license
+* `Full documentation`_
+* On the `Python Package Index (PyPI)`_
+* Scrapyd's `API Documentation`_
 
 .. _Scrapy: http://scrapy.org/
 .. _Scrapyd: https://github.com/scrapy/scrapyd
