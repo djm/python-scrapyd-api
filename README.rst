@@ -169,12 +169,14 @@ Please refer to the full documentation_ for more detailed usage but to get you s
     u'25b6588ef67333e38a0e080027880de7'
 
 
-Contributing code and/or running the tests
-------------------------------------------
+Setting up the project to contribute code
+-----------------------------------------
 
-Please see DEVELOPMENT.rst_ or refer to the `full documentation`_.
+Please see CONTRIBUTING.rst_ which is also mirrored in the `full documentation`_.
+This will guide you through our pull request guidelines, project setup and
+testing requirements.
 
-.. _DEVELOPMENT.rst: https://github.com/djm/python-scrapyd-api/blob/master/DEVELOPMENT.rst
+.. _CONTRIBUTING.rst: https://github.com/djm/python-scrapyd-api/blob/master/CONTRIBUTING.rst
 .. _full documentation: http://python-scrapyd-api.rtfd.org
 
 

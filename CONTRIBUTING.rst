@@ -6,8 +6,6 @@ Contributing
 bit helps. Whether you're simply correcting a typo or bringing the release
 up-to-date with 3rd party changes, all help is welcome and very appreciated.
 
-Types of Contributions
-----------------------
 
 Reporting Bugs
 ~~~~~~~~~~~~~~
@@ -25,6 +23,19 @@ If you are reporting a bug:
   troubleshooting.
 * A pull request would be most appreciated but even just submitting the bug
   is very helpful, thanks!
+
+Pull Request Guidelines
+-----------------------
+
+Before you submit a pull request, check that it meets these guidelines:
+
+1. The pull request should include tests, especially if fixing a regression.
+2. If the pull request adds functionality, the docs should be updated to
+   document that functionality.
+3. The pull request should work for Python 2.6, 2.7, 3.3 and 3.4.
+   Check TravisCI_ and make sure that the tests pass for all supported Python versions.
+
+.. _TravisCI: https://travis-ci.org/djm/python-scrapyd-api/pull_requests
 
 Submitting Code
 ~~~~~~~~~~~~~~~
@@ -82,15 +93,31 @@ Ready to contribute? Here's how to set up ``python-scrapyd-api`` for local devel
 
 9. Submit a pull request through the GitHub website.
 
-Pull Request Guidelines
------------------------
+How to run the tests
+--------------------
 
-Before you submit a pull request, check that it meets these guidelines:
+To run the tests:
 
-1. The pull request should include tests, especially if fixing a regression.
-2. If the pull request adds functionality, the docs should be updated to
-   document that functionality.
-3. The pull request should work for Python 2.6, 2.7, 3.3 and 3.4.
-   Check TravisCI_ and make sure that the tests pass for all supported Python versions.
+.. code:: bash
 
-.. _TravisCI: https://travis-ci.org/djm/python-scrapyd-api/pull_requests
+    $ python setup.py test
+    # or use PyTest directly:
+    $ py.test
+
+To see coverage:
+
+.. code:: bash
+
+    # In the terminal:
+    $ py.test --cov scrapyd_api tests/
+    # As a browseable HTML report:
+    $ make coverage
+
+
+Other development commands
+--------------------------
+
+Please run ``make help`` or see the Makefile_ for other development related commands.
+
+.. _Makefile: https://github.com/djm/python-scrapyd-api/blob/master/Makefile
+
