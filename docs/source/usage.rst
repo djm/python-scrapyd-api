@@ -204,8 +204,38 @@ See the `delete version endpoint`_ on Scrapyd's documentation.
 
 .. code-block:: python
 
-    >>> scrapyd.delete_version('project_name', 'ac32a..b21ac')
+    >>> scrapyd.delete_version('project_name', 'version_name')
     True
+
+Retrieve the status of a specific job
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. method:: ScrapydAPI.job_status(project, job_id)
+
+.. versionadded:: 0.2
+
+Returns the job status for a single job. The status returned can be one of:
+``''``, ``'running'``, ``'pending'`` or ``'finished'``. The empty string is
+returned if the job ID could not be found and the status is therefore unknown.
+
+**Arguments**:
+
+- **project** *(string)* The name of the project which the version belongs to.
+- **job_id** *(string)* The ID of the job you wish to check the status of.
+
+**Returns**: *(string)* The status of the job, if known.
+
+.. note::
+    Scrapyd does not support an endpoint for this specific action. This
+    method's result is derived from the list jobs endpoint,  and therefore
+    this is a helper method/shortcut provided by this wrapper itself. This is
+    why the call requires the `project` argument, as the list jobs endpoint
+    underlying this method also requires it.
+
+.. code-block:: python
+
+    >>> scrapyd.job_status('project_name', 'ac32a..bc21')
+    'running'
 
 List all jobs for a project
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
