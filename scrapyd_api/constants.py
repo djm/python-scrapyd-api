@@ -21,3 +21,9 @@ DEFAULT_ENDPOINTS = {
     LIST_VERSIONS_ENDPOINT: '/listversions.json',
     SCHEDULE_ENDPOINT: '/schedule.json',
 }
+
+FINISHED = 'finished'
+PENDING = 'pending'
+RUNNING = 'running'
+
+JOB_STATES = [FINISHED, PENDING, RUNNING]
