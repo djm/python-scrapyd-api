@@ -237,6 +237,17 @@ returned if the job ID could not be found and the status is therefore unknown.
     >>> scrapyd.job_status('project_name', 'ac32a..bc21')
     'running'
 
+If you wish, the various strings defining job state can be imported from
+the ``scrapyd`` module itself for use in comparisons. e.g:
+
+.. code-block:: python
+
+    from scrapyd_api import RUNNING, FINISHED, PENDING
+
+    state = scrapyd.job_status('project_name', 'ac32a..bc21')
+    if state == RUNNING:
+        print 'Job is running'
+
 List all jobs for a project
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
