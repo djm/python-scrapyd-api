@@ -176,7 +176,7 @@ def test_job_status():
         ('abc', PENDING),
         ('def', PENDING),
         ('ghi', FINISHED),
-        ('xyz', False)
+        ('xyz', '')
     )
     for job_id, expected_result in expected_results:
         rtn = api.job_status(PROJECT, job_id)

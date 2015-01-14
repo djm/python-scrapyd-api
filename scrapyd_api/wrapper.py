@@ -121,7 +121,7 @@ class ScrapydAPI(object):
             job_ids = [job['id'] for job in all_jobs[state]]
             if job_id in job_ids:
                 return state
-        return False
+        return ''  # Job not found, state unknown.
 
     def list_jobs(self, project):
         """
