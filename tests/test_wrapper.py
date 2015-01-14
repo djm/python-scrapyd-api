@@ -4,7 +4,9 @@ from mock import MagicMock
 from scrapyd_api.compat import StringIO
 from scrapyd_api.constants import (
     ADD_VERSION_ENDPOINT,
-    CANCEL_ENDPOINT
+    CANCEL_ENDPOINT,
+    FINISHED,
+    PENDING
 )
 from scrapyd_api.wrapper import ScrapydAPI
 
@@ -159,22 +161,45 @@ def test_delete_version():
     )
 
 
+def test_job_status():
+    """
+    Test the method which handles retrieving the status of a given job.
+    """
+    mock_client = MagicMock()
+    mock_client.get.return_value = {
+        'pending': [{'id': 'abc'}, {'id': 'def'}],
+        'running': [],
+        'finished': [{'id': 'ghi'}],
+    }
+    api = ScrapydAPI(HOST_URL, client=mock_client)
+    expected_results = (
+        ('abc', PENDING),
+        ('def', PENDING),
+        ('ghi', FINISHED),
+        ('xyz', False)
+    )
+    for job_id, expected_result in expected_results:
+        rtn = api.job_status(PROJECT, job_id)
+        assert rtn == expected_result
+
+
 def test_list_jobs():
     """
     Test the method which handles listing jobs on the server.
     """
     mock_client = MagicMock()
     mock_client.get.return_value = {
-        'pending': ['abcdef'],
-        'running': ['ghijkl'],
-        'finished': ['mnopqr'],
+        'pending': [{'id': 'abc'}, {'id': 'def'}],
+        'running': [],
+        'finished': [{'id': 'ghi'}],
     }
     api = ScrapydAPI(HOST_URL, client=mock_client)
     rtn = api.list_jobs(PROJECT)
     assert len(rtn) == 3
-    assert rtn['pending'] == ['abcdef']
-    assert rtn['running'] == ['ghijkl']
-    assert rtn['finished'] == ['mnopqr']
+    assert sorted(rtn.keys()) == ['finished', 'pending', 'running']
+    assert rtn['pending'] == [{'id': 'abc'}, {'id': 'def'}]
+    assert rtn['finished'] == [{'id': 'ghi'}]
+    assert rtn['running'] == []
     mock_client.get.assert_called_with(
         'http://localhost/listjobs.json',
         params={
