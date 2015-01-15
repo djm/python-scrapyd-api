@@ -90,6 +90,15 @@ Please refer to the full documentation_ for more detailed usage but to get you s
     # Returns True if the request was met with an OK response.
     True
 
+**Request status** of a job:
+
+.. code:: python
+
+    >>> scrapyd.job_status('project_name', '14a6599ef67111e38a0e080027880ca6')
+    # Returns 'running', 'pending', 'finished' or '' for unknown state.
+    'running'
+    True
+
 **List all jobs** registered:
 
 .. code:: python
