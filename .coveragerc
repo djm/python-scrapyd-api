@@ -1,0 +1,3 @@
+[report]
+omit =
+    scrapyd_api/compat.py
