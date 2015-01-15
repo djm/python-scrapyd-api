@@ -12,7 +12,10 @@ from .compat import (
 
 class ScrapydAPI(object):
     """
-    Provides a thin Pythonic wrapper around the Scrapyd API.
+    Provides a thin Pythonic wrapper around the Scrapyd API. The public methods
+    come in two types: first class, those that wrap a Scrapyd API endpoint
+    directly; and derived, those that use a one or more Scrapyd API endpoint(s)
+    to provide functionality that is unique to this wrapper.
     """
 
     def __init__(self, target='http://localhost:6800', auth=None,
@@ -56,7 +59,8 @@ class ScrapydAPI(object):
 
     def add_version(self, project, version, egg):
         """
-        Adds a new project egg to the Scrapyd service.
+        Adds a new project egg to the Scrapyd service. First class, maps to
+        Scrapyd's add version endpoint.
         """
         url = self._build_url(constants.ADD_VERSION_ENDPOINT)
         data = {
@@ -71,7 +75,8 @@ class ScrapydAPI(object):
 
     def cancel(self, project, job):
         """
-        Cancels a job from a specific project.
+        Cancels a job from a specific project. First class, maps to
+        Scrapyd's cancel job endpoint.
         """
         url = self._build_url(constants.CANCEL_ENDPOINT)
         data = {
@@ -79,11 +84,12 @@ class ScrapydAPI(object):
             'job': job
         }
         json = self.client.post(url, data=data)
-        return True if json['prevstate'] == 'running' else False
+        return True if json['prevstate'] == constants.RUNNING else False
 
     def delete_project(self, project):
         """
-        Deletes all versions of a project.
+        Deletes all versions of a project. First class, maps to Scrapyd's
+        delete project endpoint.
         """
         url = self._build_url(constants.DELETE_PROJECT_ENDPOINT)
         data = {
@@ -94,7 +100,8 @@ class ScrapydAPI(object):
 
     def delete_version(self, project, version):
         """
-        Deletes a specific version of a project.
+        Deletes a specific version of a project. First class, maps to
+        Scrapyd's delete version endpoint.
         """
         url = self._build_url(constants.DELETE_VERSION_ENDPOINT)
         data = {
@@ -104,9 +111,22 @@ class ScrapydAPI(object):
         self.client.post(url, data=data)
         return True
 
+    def job_status(self, project, job_id):
+        """
+        Retrieves the 'status' of a specific job specified by its id. Derived,
+        utilises Scrapyd's list jobs endpoint to provide the answer.
+        """
+        all_jobs = self.list_jobs(project)
+        for state in constants.JOB_STATES:
+            job_ids = [job['id'] for job in all_jobs[state]]
+            if job_id in job_ids:
+                return state
+        return ''  # Job not found, state unknown.
+
     def list_jobs(self, project):
         """
-        Lists all known jobs.
+        Lists all known jobs for a project. First class, maps to Scrapyd's
+        list jobs endpoint.
         """
         url = self._build_url(constants.LIST_JOBS_ENDPOINT)
         params = {'project': project}
@@ -115,7 +135,8 @@ class ScrapydAPI(object):
 
     def list_projects(self):
         """
-        Lists all deployed projects.
+        Lists all deployed projects. First class, maps to Scrapyd's
+        list projects endpoint.
         """
         url = self._build_url(constants.LIST_PROJECTS_ENDPOINT)
         json = self.client.get(url)
@@ -123,7 +144,8 @@ class ScrapydAPI(object):
 
     def list_spiders(self, project):
         """
-        Lists all known spiders for a specific project.
+        Lists all known spiders for a specific project. First class, maps
+        to Scrapyd's list spiders endpoint.
         """
         url = self._build_url(constants.LIST_SPIDERS_ENDPOINT)
         params = {'project': project}
@@ -132,7 +154,8 @@ class ScrapydAPI(object):
 
     def list_versions(self, project):
         """
-        Lists all deployed versions of a specific project.
+        Lists all deployed versions of a specific project. First class, maps
+        to Scrapyd's list versions endpoint.
         """
         url = self._build_url(constants.LIST_VERSIONS_ENDPOINT)
         params = {'project': project}
@@ -141,7 +164,8 @@ class ScrapydAPI(object):
 
     def schedule(self, project, spider, settings=None, **kwargs):
         """
-        Schedules a spider from a specific project to run.
+        Schedules a spider from a specific project to run. First class, maps
+        to Scrapyd's scheduling endpoint.
         """
 
         url = self._build_url(constants.SCHEDULE_ENDPOINT)
