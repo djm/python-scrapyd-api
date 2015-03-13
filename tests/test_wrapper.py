@@ -81,6 +81,16 @@ def test_build_url_with_non_existant_endpoint_errors():
     with pytest.raises(ValueError):
         api._build_url('does-not-exist')
 
+def test_build_url_with_kwargs():
+    """
+    Tests that supplying _build_url with additional keyword arguments
+    """
+    custom_endpoints = {
+        'TEST': '/{var1}/{var2}?somevar={var3}'
+    }
+    api = ScrapydAPI('http://localhost', endpoints=custom_endpoints)
+    url = api._build_url('TEST', var1='hello', var2='world', var3='!')
+    assert url == 'http://localhost/hello/world?somevar=!'
 
 def test_add_version():
     """
@@ -295,3 +305,17 @@ def test_schedule():
                                           'DOWNLOAD_DELAY=2']
     assert 'spider' in data_kw
     assert data_kw['spider'] == SPIDER
+
+
+def test_fetch_logs():
+    """
+    Test the method which fetches logs based on job id.
+    """
+    mock_client = MagicMock()
+    mock_client.get.return_value = "example log"
+    api = ScrapydAPI(HOST_URL, client=mock_client)
+    rtn = api.fetch_log(PROJECT, SPIDER, JOB)
+    args, kwargs = mock_client.get.call_args
+    assert rtn == mock_client.get.return_value
+    assert args[0] == 'http://localhost/logs/{0}/{1}/{2}.log'.format(
+        PROJECT, SPIDER, JOB)

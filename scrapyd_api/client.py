@@ -22,6 +22,10 @@ class Client(Session):
                     response.status_code,
                     response.text))
 
+    def _handle_json_response(self, response):
+        """
+        Handles the response received from Scrapyd.
+        """
         try:
             json = response.json()
         except ValueError:
@@ -34,5 +38,13 @@ class Client(Session):
             raise ScrapydResponseError(json['message'])
 
     def request(self, *args, **kwargs):
+        """
+        Takes not_json to signal whether response should be parsed as json or
+        not.
+        """
+        not_json = 'not_json' in kwargs and kwargs['not_json']
+        if 'not_json' in kwargs:
+            del kwargs['not_json']
         response = super(Client, self).request(*args, **kwargs)
-        return self._handle_response(response)
+        self._handle_response(response)
+        return response.text if not_json else self._handle_json_response(response)

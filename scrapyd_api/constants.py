@@ -9,6 +9,7 @@ LIST_PROJECTS_ENDPOINT = 'list_projects'
 LIST_SPIDERS_ENDPOINT = 'list_spiders'
 LIST_VERSIONS_ENDPOINT = 'list_versions'
 SCHEDULE_ENDPOINT = 'schedule'
+LOG_ENDPOINT = 'fetch_log'
 
 DEFAULT_ENDPOINTS = {
     ADD_VERSION_ENDPOINT: '/addversion.json',
@@ -20,6 +21,7 @@ DEFAULT_ENDPOINTS = {
     LIST_SPIDERS_ENDPOINT: '/listspiders.json',
     LIST_VERSIONS_ENDPOINT: '/listversions.json',
     SCHEDULE_ENDPOINT: '/schedule.json',
+    LOG_ENDPOINT: '/logs/{project}/{spider}/{job_id}.log'
 }
 
 FINISHED = 'finished'
