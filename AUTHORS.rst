@@ -10,4 +10,4 @@ Initial Work
 Contributors
 ------------
 
-Soon..
+* Joakim Uddholm <tethik@gmail.com>
