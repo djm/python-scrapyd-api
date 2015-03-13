@@ -47,4 +47,7 @@ class Client(Session):
             del kwargs['not_json']
         response = super(Client, self).request(*args, **kwargs)
         self._handle_response(response)
-        return response.text if not_json else self._handle_json_response(response)
+        if not_json:
+            return response.text
+        else:
+            return self._handle_json_response(response)
