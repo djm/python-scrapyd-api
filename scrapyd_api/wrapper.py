@@ -45,7 +45,7 @@ class ScrapydAPI(object):
         self.endpoints = deepcopy(constants.DEFAULT_ENDPOINTS)
         self.endpoints.update(endpoints)
 
-    def _build_url(self, endpoint):
+    def _build_url(self, endpoint, **kwargs):
         """
         Builds the absolute URL using the target and desired endpoint.
         """
@@ -55,6 +55,7 @@ class ScrapydAPI(object):
             msg = 'Unknown endpoint `{0}`'
             raise ValueError(msg.format(endpoint))
         absolute_url = urljoin(self.target, path)
+        absolute_url = absolute_url.format(**kwargs)
         return absolute_url
 
     def add_version(self, project, version, egg):
@@ -181,3 +182,13 @@ class ScrapydAPI(object):
             data['setting'] = setting_params
         json = self.client.post(url, data=data)
         return json['jobid']
+
+    def fetch_log(self, project, spider, job_id):
+        """
+        Fetches the log for a specific job. Maps to Scrapyd's log endpoint,
+        which is not documented as part of the API but there if you enabled it.
+        """
+        url = self._build_url(
+            constants.LOG_ENDPOINT, project=project,
+            spider=spider, job_id=job_id)
+        return self.client.get(url, not_json=True)

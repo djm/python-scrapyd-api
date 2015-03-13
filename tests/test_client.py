@@ -72,6 +72,9 @@ def test_handle_http_error_response():
     with pytest.raises(ScrapydResponseError) as excinfo:
         non_authed_client.get(URL)
     assert '500 error' in str(excinfo.value)
+    with pytest.raises(ScrapydResponseError) as excinfo:
+        non_authed_client.get(URL, not_json=True)
+    assert '500 error' in str(excinfo.value)
 
 
 @responses.activate
@@ -85,6 +88,7 @@ def test_non_or_invalid_json_response_errors():
     with pytest.raises(ScrapydResponseError) as excinfo:
         non_authed_client.get(URL)
     assert 'invalid JSON' in str(excinfo.value)
+    non_authed_client.get(URL, not_json=True)
 
 
 @responses.activate
