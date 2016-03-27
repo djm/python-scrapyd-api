@@ -7,8 +7,9 @@ History
 ++++++++++++++++++
 
 Why Version 2? This package has been production ready and stable in use
-for over a year now, so it's ready  to commit to a stable API via semver.
-We skip version 1 as I want it to be clear upgrading
+for over a year now, so it's ready  to commit to a stable API /w semver.
+Version 1 has deliberately been skipped to make it absolutely clear that
+this release contains a breaking change:
 
 Breaking changes:
 

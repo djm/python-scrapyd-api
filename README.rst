@@ -21,7 +21,7 @@ python-scrapyd-api
 
 A Python wrapper for working with Scrapyd_'s API_.
 
-Current version: 2.0.0
+Current released version: 2.0.0 (see history_).
 
 Allows a Python application to talk to, and therefore control, the Scrapy_
 daemon: Scrapyd_.
@@ -35,6 +35,7 @@ daemon: Scrapyd_.
 .. _Scrapy: http://scrapy.org/
 .. _Scrapyd: https://github.com/scrapy/scrapyd
 .. _API: http://scrapyd.readthedocs.org/en/latest/api.html
+.. _history: https://github.com/djm/python-scrapyd-api/blob/master/HISTORY.rst
 .. _Python Package Index (PyPI): https://pypi.python.org/pypi/python-scrapyd-api/
 .. _Full documentation: http://python-scrapyd-api.rtfd.org
 .. _API Documentation: http://scrapyd.readthedocs.org/en/latest/api.html
