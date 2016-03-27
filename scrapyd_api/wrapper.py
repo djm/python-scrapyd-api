@@ -84,7 +84,7 @@ class ScrapydAPI(object):
             'job': job
         }
         json = self.client.post(url, data=data)
-        return True if json['prevstate'] == constants.RUNNING else False
+        return True if json['prevstate'] in [constants.PENDING,constants.RUNNING]  else False
 
     def delete_project(self, project):
         """
