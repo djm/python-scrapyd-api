@@ -13,10 +13,16 @@ this release contains a breaking change:
 
 Breaking changes:
 
-* The cancel job endpoint now returns `True` on hearing a successful reply
-  from the Scrapyd API; before it would have returned `True` only if the
-  cancelled job was previously running, but this resulted in us incorrectly
-  reporting `False` when a *pending* job was actually cancelled.
+* The cancel job endpoint now returns the previous state of the successfully
+  cancelled spider rather than a simple boolean True/False. This change was
+  made because:
+    a) the boolean return was relatively useless and actually hiding data the
+       scrapyd API passes us as part of the cancel endpoint response.
+    b) before this change, the method would have returned `True` only if the
+       cancelled job was previously running, and this resulted in us incorrectly
+       reporting `False` when a *pending* job was cancelled.
+  This may require no changes to your codebase but nevertheless it is a change
+  in a public API, thus the requirement for major version bumping.
 
 Other changes:
 
