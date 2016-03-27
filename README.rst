@@ -21,6 +21,8 @@ python-scrapyd-api
 
 A Python wrapper for working with Scrapyd_'s API_.
 
+Current version: 0.2.0
+
 Allows a Python application to talk to, and therefore control, the Scrapy_
 daemon: Scrapyd_.
 
