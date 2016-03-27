@@ -3,6 +3,12 @@
 History
 -------
 
+2.0.1 (2016-02-27)
+++++++++++++++++++
+
+v2.0.0 shipped with docs which were slightly out of date for the cancel
+endpoint, this release corrects that.
+
 2.0.0 (2016-02-27)
 ++++++++++++++++++
 
