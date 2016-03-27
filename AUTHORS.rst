@@ -5,9 +5,9 @@ Authors
 Initial Work
 ------------
 
-* Darian Moody <mail@djm.org.uk>
+* Darian Moody <mail@djm.org.uk, github: @djm>
 
 Contributors
 ------------
 
-Soon..
+* Bruce Tang <github: @BruceDone>
