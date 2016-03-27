@@ -11,10 +11,10 @@ Please see the README_ for quick usage instructions.
 
 Instantiating the wrapper
 -------------------------
-   
+
 The wrapper is the core component which allows you to talk to Scrapyd's API
 and in most cases this will be the first and only point of interaction with
-this package. 
+this package.
 
 .. code-block:: python
 
@@ -145,9 +145,9 @@ Cancel a job
 
 .. method:: ScrapydAPI.cancel(project, job)
 
-Cancels a running or pending job. A job in this regard is a previously
-scheduled run of a specific spider. See the `cancel endpoint`_ on Scrapyd's
-documentation.
+Cancels a running or pending job with an optionally supplied termination signal.
+A job in this regard is a previously scheduled run of a specific spider. See the
+`cancel endpoint`_ on Scrapyd's documentation.
 
 .. _cancel endpoint: http://scrapyd.readthedocs.org/en/latest/api.html#cancel-json
 
@@ -155,14 +155,17 @@ documentation.
 
 - **project** *(string)* The name of the project the job belongs to.
 - **job** *(string)* The ID of the job (which was reported back on scheduling).
+- **signal** *(string, int)* (optional) The termination signal to cancel the jobs with. If one
+                             is not provided, this field is not actively reported to scrapyd,
+                             allowing for it to apply its default signal for termination.
 
-**Returns**: *(bool)* True if the job was previously in the `running` state,
-False otherwise.
+**Returns**: *(string)* 'running' if the cancelled job was actively running, or 'pending'
+                        if it was waiting to be run.
 
 .. code-block:: python
 
     >>> scrapyd.cancel('project_name', 'a3cb2..4efc1')
-    True
+    'running'
 
 Delete a project
 ~~~~~~~~~~~~~~~~
@@ -270,7 +273,7 @@ the ``id`` and the name of the ``spider`` which ran the job.
     {
         'pending': [
             {
-                u'id': u'24c35...f12ae', 
+                u'id': u'24c35...f12ae',
                 u'spider': u'spider_name'
             },
         ],
@@ -414,7 +417,7 @@ the exceptions raised by Requests itself for such things as hard connection
 errors, timeouts etc can be found in the `Requests exceptions documentation`_.
 
 .. _Requests: http://python-requests.org
-.. _Requests exceptions documentation: http://docs.python-requests.org/en/latest/api/?highlight=exceptions#exceptions 
+.. _Requests exceptions documentation: http://docs.python-requests.org/en/latest/api/?highlight=exceptions#exceptions
 
 However, when the problem is an error Scrapyd has returned itself instead,
 the ``scrapyd_api.exceptions.ScrapydResponseError`` will be raised with the
