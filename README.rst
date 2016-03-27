@@ -71,8 +71,8 @@ Please refer to the full documentation_ for more detailed usage but to get you s
 .. code:: python
 
     >>> scrapyd.cancel('project_name', '14a6599ef67111e38a0e080027880ca6')
-    # Returns True if the request was met with an OK response.
-    True
+    # Returns the "previous state" of the job before it was cancelled: 'running' or 'pending'.
+    'running'
 
 **Delete a project** and all sibling versions:
 
@@ -107,7 +107,7 @@ Please refer to the full documentation_ for more detailed usage but to get you s
     {
         'pending': [
             {
-                u'id': u'24c35...f12ae', 
+                u'id': u'24c35...f12ae',
                 u'spider': u'spider_name'
             },
         ],
