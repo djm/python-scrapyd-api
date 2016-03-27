@@ -20,8 +20,8 @@ JOB = 'd131dd02c5e6eec4693d9a0698aff95c'
 
 def test_auth_gets_applied_when_client_is_not_supplied():
     """
-    Test that auth details get correctly passed to the client when
-    no client is provided.
+    Auth details should get correctly passed to the client
+    when no client is provided.
     """
     api = ScrapydAPI(HOST_URL, auth=AUTH)
     assert api.client.auth == AUTH
@@ -29,8 +29,8 @@ def test_auth_gets_applied_when_client_is_not_supplied():
 
 def test_auth_doesnt_get_applied_when_client_is_supplied():
     """
-    Test that auth details do not get set on a passed client. Instantiated
-    clients should handle authentication themselves.
+    Auth details should not get set on a passed client.
+    Instantiated clients should handle auth themselves.
     """
     mock_client = MagicMock()
     api = ScrapydAPI(HOST_URL, auth=AUTH, client=mock_client)
@@ -39,8 +39,8 @@ def test_auth_doesnt_get_applied_when_client_is_supplied():
 
 def test_build_url_with_default_endpoints():
     """
-    Test that the absolute URL constructor correctly forms URL when
-    the ScrapydAPI is relying on the default endpoints.
+    Absolute URL constructor should form correct URL when
+    the client is relying on the default endpoints.
     """
     api = ScrapydAPI('http://localhost')
     url = api._build_url(ADD_VERSION_ENDPOINT)
@@ -53,8 +53,8 @@ def test_build_url_with_default_endpoints():
 
 def test_build_url_with_custom_endpoints():
     """
-    Test that the absolute URL constructor correctly forms URL when
-    the ScrapydAPI had custom endpoints passed in.
+    The absolute URL constructor should correctly form URL when
+    the client has custom endpoints passed in.
     """
     custom_endpoints = {
         ADD_VERSION_ENDPOINT: '/addversion-custom.json'
@@ -74,8 +74,8 @@ def test_build_url_with_custom_endpoints():
 
 def test_build_url_with_non_existant_endpoint_errors():
     """
-    Test that supplying _build_url with an endpoint that does not
-    exist in the endpoints dictionary results in a ValueError.
+    Supplying _build_url with an endpoint that does not exist in
+    the endpoints dictionary should result in a ValueError.
     """
     api = ScrapydAPI(HOST_URL)
     with pytest.raises(ValueError):
@@ -83,9 +83,6 @@ def test_build_url_with_non_existant_endpoint_errors():
 
 
 def test_add_version():
-    """
-    Test the method which handles adding a new version of a project.
-    """
     mock_client = MagicMock()
     mock_client.post.return_value = {
         'spiders': 3
@@ -106,17 +103,14 @@ def test_add_version():
     )
 
 
-def test_cancel():
-    """
-    Test the method which handles cancelling a spider job.
-    """
+def test_cancelling_running_job():
     mock_client = MagicMock()
     mock_client.post.return_value = {
         'prevstate': 'running',
     }
     api = ScrapydAPI(HOST_URL, client=mock_client)
     rtn = api.cancel(PROJECT, JOB)
-    assert rtn is True
+    assert rtn is 'running'
     mock_client.post.assert_called_with(
         'http://localhost/cancel.json',
         data={
@@ -126,10 +120,42 @@ def test_cancel():
     )
 
 
+def test_cancelling_pending_job():
+    mock_client = MagicMock()
+    mock_client.post.return_value = {
+        'prevstate': 'pending',
+    }
+    api = ScrapydAPI(HOST_URL, client=mock_client)
+    rtn = api.cancel(PROJECT, JOB)
+    assert rtn is 'pending'
+    mock_client.post.assert_called_with(
+        'http://localhost/cancel.json',
+        data={
+            'project': PROJECT,
+            'job': JOB
+        }
+    )
+
+
+def test_cancelling_with_specific_signal():
+    mock_client = MagicMock()
+    mock_client.post.return_value = {
+        'prevstate': 'running',
+    }
+    api = ScrapydAPI(HOST_URL, client=mock_client)
+    rtn = api.cancel(PROJECT, JOB, signal='TERM')
+    assert rtn is 'running'
+    mock_client.post.assert_called_with(
+        'http://localhost/cancel.json',
+        data={
+            'project': PROJECT,
+            'job': JOB,
+            'signal': 'TERM'
+        }
+    )
+
+
 def test_delete_project():
-    """
-    Test the method which handles deleting a project.
-    """
     mock_client = MagicMock()
     mock_client.post.return_value = {}
     api = ScrapydAPI(HOST_URL, client=mock_client)
@@ -144,9 +170,6 @@ def test_delete_project():
 
 
 def test_delete_version():
-    """
-    Test the method which handles deleting a version of a project.
-    """
     mock_client = MagicMock()
     mock_client.post.return_value = {}
     api = ScrapydAPI(HOST_URL, client=mock_client)
@@ -162,9 +185,6 @@ def test_delete_version():
 
 
 def test_job_status():
-    """
-    Test the method which handles retrieving the status of a given job.
-    """
     mock_client = MagicMock()
     mock_client.get.return_value = {
         'pending': [{'id': 'abc'}, {'id': 'def'}],
@@ -184,9 +204,6 @@ def test_job_status():
 
 
 def test_list_jobs():
-    """
-    Test the method which handles listing jobs on the server.
-    """
     mock_client = MagicMock()
     mock_client.get.return_value = {
         'pending': [{'id': 'abc'}, {'id': 'def'}],
@@ -209,9 +226,6 @@ def test_list_jobs():
 
 
 def test_list_projects():
-    """
-    Test the method which handles listing projects on the server.
-    """
     mock_client = MagicMock()
     mock_client.get.return_value = {
         'projects': ['test', 'test2']
@@ -225,9 +239,6 @@ def test_list_projects():
 
 
 def test_list_spiders():
-    """
-    Test the method which handles listing all spiders in a project.
-    """
     mock_client = MagicMock()
     mock_client.get.return_value = {
         'spiders': ['spider', 'spider2']
@@ -245,9 +256,6 @@ def test_list_spiders():
 
 
 def test_list_versions():
-    """
-    Test the method which handles listing all versions of a project.
-    """
     mock_client = MagicMock()
     mock_client.get.return_value = {
         'versions': ['version', 'version2']
@@ -264,9 +272,6 @@ def test_list_versions():
 
 
 def test_schedule():
-    """
-    Test the method which handles scheduling a new job.
-    """
     mock_client = MagicMock()
     job_id = 'ce54b67080280d1ec69821bcb6a88393'
     settings = {

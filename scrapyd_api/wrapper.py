@@ -73,7 +73,7 @@ class ScrapydAPI(object):
         json = self.client.post(url, data=data, files=files)
         return json['spiders']
 
-    def cancel(self, project, job):
+    def cancel(self, project, job, signal=None):
         """
         Cancels a job from a specific project. First class, maps to
         Scrapyd's cancel job endpoint.
@@ -81,10 +81,12 @@ class ScrapydAPI(object):
         url = self._build_url(constants.CANCEL_ENDPOINT)
         data = {
             'project': project,
-            'job': job
+            'job': job,
         }
+        if signal is not None:
+            data['signal'] = signal
         json = self.client.post(url, data=data)
-        return True if json['prevstate'] == constants.RUNNING else False
+        return json['prevstate']
 
     def delete_project(self, project):
         """
