@@ -143,7 +143,7 @@ the only useful information returned by Scrapyd as part of this call.
 Cancel a job
 ~~~~~~~~~~~~
 
-.. method:: ScrapydAPI.cancel(project, job)
+.. method:: ScrapydAPI.cancel(project, job, signal=None)
 
 Cancels a running or pending job with an optionally supplied termination signal.
 A job in this regard is a previously scheduled run of a specific spider. See the
@@ -155,17 +155,16 @@ A job in this regard is a previously scheduled run of a specific spider. See the
 
 - **project** *(string)* The name of the project the job belongs to.
 - **job** *(string)* The ID of the job (which was reported back on scheduling).
-- **signal** *(string, int)* (optional) The termination signal to cancel the jobs with. If one
-                             is not provided, this field is not actively reported to scrapyd,
-                             allowing for it to apply its default signal for termination.
+- **signal** *(optional - string or int)* The termination signal to use. If one is not provided, this field is not send allowing scrapyd to pick the default.
 
-**Returns**: *(string)* 'running' if the cancelled job was actively running, or 'pending'
-                        if it was waiting to be run.
+**Returns**: *(string)* ``'running'`` if the cancelled job was active, or ``'pending'`` if it was waiting to run.
 
 .. code-block:: python
 
     >>> scrapyd.cancel('project_name', 'a3cb2..4efc1')
     'running'
+    >>> scrapyd.cancel('project_name', 'b3ea2..3acc2', signal='TERM')
+    'pending'
 
 Delete a project
 ~~~~~~~~~~~~~~~~
