@@ -29,7 +29,7 @@ if sys.argv[-1] == 'publish':
 
 setup(
     name='python-scrapyd-api',
-    version='0.2.0',
+    version='2.0.0',
     description='A Python wrapper for working with the Scrapyd API',
     keywords='python-scrapyd-api scrapyd scrapy api wrapper',
     long_description=readme + '\n\n' + history,
