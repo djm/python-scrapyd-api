@@ -63,7 +63,7 @@ Please refer to the full documentation_ for more detailed usage but to get you s
 
 .. code:: python
 
-    >>> egg = open('some_egg.egg')
+    >>> egg = open('some_egg.egg', 'rb')
     >>> scrapyd.add_version('project_name', 'version_name', egg)
     # Returns the number of spiders in the project.
     3
