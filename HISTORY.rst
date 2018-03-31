@@ -3,6 +3,15 @@
 History
 -------
 
+2.1.0 (2018-03-31)
+++++++++++++++++++
+
+* Introduces the `timeout` keyword argument, which allows the caller to specify
+  a timeout after which requests to the scrapyd server give up. This works as
+  per the underlying `requests` library, and raises `requests.exceptions.Timeout`
+  when the timeout is exceeded. See docs for usage.
+
+
 2.0.1 (2016-02-27)
 ++++++++++++++++++
 
