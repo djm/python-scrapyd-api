@@ -11,3 +11,4 @@ Contributors
 ------------
 
 * Bruce Tang <github: @BruceDone>
+* Tomas Linhart <github: @tlinhart>

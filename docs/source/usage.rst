@@ -33,6 +33,8 @@ You may have further special requirements, for example one of the following:
 - you may require HTTP Basic Authentication for your connections to Scrapyd.
 - you may have changed the default endpoints for the various API actions.
 - you may need to swap out the default connection client/handler.
+- you may want to provide a timeout for client requests so the program does not
+  hang indefinitely in case the server is not responding.
 
 Providing HTTP Basic Auth credentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -107,6 +109,25 @@ At the very minimum the client object should support:
   ``scrapd_api.client.Client._handle_response`` method which has the ability
   to load the JSON returned and check the "status" which gets sent from
   Scrapyd, raising the ``ScrapydResponseError`` exception as required.
+
+Setting timeout for the requests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default, client requests do not time out unless a timeout value is set
+explicitly. Thus, if the server is not responding, your code may hang
+indefinitely. You can tell the client to stop waiting for a response after
+a given number of seconds with the ``timeout`` parameter provided during
+instantiation of the wrapper:
+
+.. code-block:: python
+
+    scrapyd = ScrapydAPI('http//example.com:6800/scrapyd/', timeout=5)
+
+The value should be a float or a (connect timeout, read timeout) tuple. It will
+be supplied to every request to the server. Additional information can be found
+in the `Requests documentation`_.
+
+.. _Requests documentation: http://docs.python-requests.org/en/master/user/advanced/#timeouts
 
 Calling the API
 ---------------

@@ -1,5 +1,6 @@
 import pytest
 from mock import MagicMock
+from requests import Timeout
 
 from scrapyd_api.compat import StringIO
 from scrapyd_api.constants import (
@@ -99,7 +100,8 @@ def test_add_version():
         },
         files={
             'egg': test_egg
-        }
+        },
+        timeout=None
     )
 
 
@@ -116,7 +118,8 @@ def test_cancelling_running_job():
         data={
             'project': PROJECT,
             'job': JOB
-        }
+        },
+        timeout=None
     )
 
 
@@ -133,7 +136,8 @@ def test_cancelling_pending_job():
         data={
             'project': PROJECT,
             'job': JOB
-        }
+        },
+        timeout=None
     )
 
 
@@ -151,7 +155,8 @@ def test_cancelling_with_specific_signal():
             'project': PROJECT,
             'job': JOB,
             'signal': 'TERM'
-        }
+        },
+        timeout=None
     )
 
 
@@ -165,7 +170,8 @@ def test_delete_project():
         'http://localhost/delproject.json',
         data={
             'project': PROJECT,
-        }
+        },
+        timeout=None
     )
 
 
@@ -180,7 +186,8 @@ def test_delete_version():
         data={
             'project': PROJECT,
             'version': VERSION
-        }
+        },
+        timeout=None
     )
 
 
@@ -221,7 +228,8 @@ def test_list_jobs():
         'http://localhost/listjobs.json',
         params={
             'project': PROJECT,
-        }
+        },
+        timeout=None
     )
 
 
@@ -235,6 +243,7 @@ def test_list_projects():
     assert rtn == ['test', 'test2']
     mock_client.get.assert_called_with(
         'http://localhost/listprojects.json',
+        timeout=None
     )
 
 
@@ -252,6 +261,7 @@ def test_list_spiders():
         params={
             'project': PROJECT,
         },
+        timeout=None
     )
 
 
@@ -268,6 +278,7 @@ def test_list_versions():
         params={
             'project': PROJECT,
         },
+        timeout=None
     )
 
 
@@ -288,7 +299,7 @@ def test_schedule():
     args, kwargs = mock_client.post.call_args
     assert len(args) == 1
     assert args[0] == 'http://localhost/schedule.json'
-    assert len(kwargs) == 1
+    assert len(kwargs) == 2
     assert 'data' in kwargs
     data_kw = kwargs['data']
     assert 'project' in data_kw
@@ -300,3 +311,13 @@ def test_schedule():
                                           'DOWNLOAD_DELAY=2']
     assert 'spider' in data_kw
     assert data_kw['spider'] == SPIDER
+
+
+def test_request_timeout():
+    """
+    The client should raise an exception when the server does not respond
+    in time limit.
+    """
+    api = ScrapydAPI('http://httpbin.org/delay/5', timeout=1)
+    with pytest.raises(Timeout):
+        api.client.get(api.target, timeout=api.timeout)
