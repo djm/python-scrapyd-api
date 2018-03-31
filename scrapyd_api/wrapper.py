@@ -19,7 +19,7 @@ class ScrapydAPI(object):
     """
 
     def __init__(self, target='http://localhost:6800', auth=None,
-                 endpoints=None, client=None):
+                 endpoints=None, client=None, timeout=None):
         """
         Instantiates the ScrapydAPI wrapper for use.
 
@@ -31,6 +31,8 @@ class ScrapydAPI(object):
                      the pre-existing defaults.
           client: a pre-instantiated requests-like client. By default, we use
                   our own client. Override for your own needs.
+          timeout: timeout for client requests in seconds, either as a float
+                   or a (connect timeout, read timeout) tuple
 
         """
         if endpoints is None:
@@ -42,6 +44,7 @@ class ScrapydAPI(object):
 
         self.target = target
         self.client = client
+        self.timeout = timeout
         self.endpoints = deepcopy(constants.DEFAULT_ENDPOINTS)
         self.endpoints.update(endpoints)
 
@@ -70,7 +73,8 @@ class ScrapydAPI(object):
         files = {
             'egg': egg
         }
-        json = self.client.post(url, data=data, files=files)
+        json = self.client.post(url, data=data, files=files,
+                                timeout=self.timeout)
         return json['spiders']
 
     def cancel(self, project, job, signal=None):
@@ -85,7 +89,7 @@ class ScrapydAPI(object):
         }
         if signal is not None:
             data['signal'] = signal
-        json = self.client.post(url, data=data)
+        json = self.client.post(url, data=data, timeout=self.timeout)
         return json['prevstate']
 
     def delete_project(self, project):
@@ -97,7 +101,7 @@ class ScrapydAPI(object):
         data = {
             'project': project,
         }
-        self.client.post(url, data=data)
+        self.client.post(url, data=data, timeout=self.timeout)
         return True
 
     def delete_version(self, project, version):
@@ -110,7 +114,7 @@ class ScrapydAPI(object):
             'project': project,
             'version': version
         }
-        self.client.post(url, data=data)
+        self.client.post(url, data=data, timeout=self.timeout)
         return True
 
     def job_status(self, project, job_id):
@@ -132,7 +136,7 @@ class ScrapydAPI(object):
         """
         url = self._build_url(constants.LIST_JOBS_ENDPOINT)
         params = {'project': project}
-        jobs = self.client.get(url, params=params)
+        jobs = self.client.get(url, params=params, timeout=self.timeout)
         return jobs
 
     def list_projects(self):
@@ -141,7 +145,7 @@ class ScrapydAPI(object):
         list projects endpoint.
         """
         url = self._build_url(constants.LIST_PROJECTS_ENDPOINT)
-        json = self.client.get(url)
+        json = self.client.get(url, timeout=self.timeout)
         return json['projects']
 
     def list_spiders(self, project):
@@ -151,7 +155,7 @@ class ScrapydAPI(object):
         """
         url = self._build_url(constants.LIST_SPIDERS_ENDPOINT)
         params = {'project': project}
-        json = self.client.get(url, params=params)
+        json = self.client.get(url, params=params, timeout=self.timeout)
         return json['spiders']
 
     def list_versions(self, project):
@@ -161,7 +165,7 @@ class ScrapydAPI(object):
         """
         url = self._build_url(constants.LIST_VERSIONS_ENDPOINT)
         params = {'project': project}
-        json = self.client.get(url, params=params)
+        json = self.client.get(url, params=params, timeout=self.timeout)
         return json['versions']
 
     def schedule(self, project, spider, settings=None, **kwargs):
@@ -181,5 +185,5 @@ class ScrapydAPI(object):
             for setting_name, value in iteritems(settings):
                 setting_params.append('{0}={1}'.format(setting_name, value))
             data['setting'] = setting_params
-        json = self.client.post(url, data=data)
+        json = self.client.post(url, data=data, timeout=self.timeout)
         return json['jobid']
