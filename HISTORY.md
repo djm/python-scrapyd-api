@@ -1,5 +1,9 @@
 # History
 
+## 2.1.1 (2018-04-01)
+
+* Base set of docs converted to markdown (README, AUTHORS, CONTRIBUTING, HISTORY)
+
 ## 2.1.0 (2018-03-31)
 
 * Introduces the `timeout` keyword argument, which allows the caller to specify

@@ -4,7 +4,7 @@
 
 A Python wrapper for working with [Scrapyd][scrapyd]'s [API][scrapyd-api-docs].
 
-Current released version: 2.1.0 (see [history][history]).
+Current released version: 2.1.1 (see [history][history]).
 
 Allows a Python application to talk to, and therefore control, the
 [Scrapy][scrapy] daemon: [Scrapyd][scrapyd].
