@@ -168,7 +168,6 @@ guidelines, project setup and testing requirements.
 [contributing]: https://github.com/djm/python-scrapyd-api/blob/master/CONTRIBUTING.md
 
 ## License
--------
 
 2-clause BSD. See the full [LICENSE][license].
 
