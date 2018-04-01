@@ -40,11 +40,15 @@ docs:
 
 release: clean
 	python3 setup.py sdist bdist_wheel
-	twine upload dist/*
+	# Tar must go first due to markdown render related bug with wheel
+	twine upload dist/*.tar.gz
+	twine upload dist/*.whl
 
 test-release: clean
 	python3 setup.py sdist bdist_wheel
-	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+	# Tar must go first due to markdown render related bug with wheel
+	twine upload --repository-url https://test.pypi.org/legacy/ dist/*.tar.gz
+	twine upload --repository-url https://test.pypi.org/legacy/ dist/*.whl
 
 dist: clean
 	python3 setup.py sdist bdist_wheel
