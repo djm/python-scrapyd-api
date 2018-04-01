@@ -40,13 +40,17 @@ docs:
 
 release: clean
 	python3 setup.py sdist bdist_wheel
+	echo "You will be asked for auth TWICE, one for tar, one for wheel - until MD bug is resolved"
 	# Tar must go first due to markdown render related bug with wheel
-	twine upload dist/*.tar.gz
-	twine upload dist/*.whl
+	# When wheel==0.31 is released, this can change to just one line with dist/*
+	twine upload  --repository-url https://upload.pypi.org/legacy/ dist/*.tar.gz
+	twine upload  --repository-url https://upload.pypi.org/legacy/ dist/*.whl
 
 test-release: clean
 	python3 setup.py sdist bdist_wheel
+	echo "You will be asked for auth TWICE, one for tar, one for wheel - until MD bug is resolved"
 	# Tar must go first due to markdown render related bug with wheel
+	# When wheel==0.31 is released, this can change to just one line with dist/*
 	twine upload --repository-url https://test.pypi.org/legacy/ dist/*.tar.gz
 	twine upload --repository-url https://test.pypi.org/legacy/ dist/*.whl
 
