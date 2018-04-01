@@ -1,10 +1,6 @@
-.. :changelog:
+# History
 
-History
--------
-
-2.1.0 (2018-03-31)
-++++++++++++++++++
+## 2.1.0 (2018-03-31)
 
 * Introduces the `timeout` keyword argument, which allows the caller to specify
   a timeout after which requests to the scrapyd server give up. This works as
@@ -12,14 +8,12 @@ History
   when the timeout is exceeded. See docs for usage.
 
 
-2.0.1 (2016-02-27)
-++++++++++++++++++
+## 2.0.1 (2016-02-27)
 
 v2.0.0 shipped with docs which were slightly out of date for the cancel
 endpoint, this release corrects that.
 
-2.0.0 (2016-02-27)
-++++++++++++++++++
+## 2.0.0 (2016-02-27)
 
 Why Version 2? This package has been production ready and stable in use
 for over a year now, so it's ready  to commit to a stable API /w semver.
@@ -47,14 +41,12 @@ Other changes:
   allows scrapyd control over which default signal gets used (currently `TERM`).
 
 
-0.2.0 (2015-01-14)
-++++++++++++++++++
+## 0.2.0 (2015-01-14)
 
 * Added the new ``job_status`` method which can retrieve the job status of a
   specific job from a project. See docs for usage.
 * Increased and improved test coverage.
 
-0.1.0 (2014-09-16)
-++++++++++++++++++
+## 0.1.0 (2014-09-16)
 
 * First release on PyPI.

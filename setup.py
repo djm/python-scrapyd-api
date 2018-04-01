@@ -5,8 +5,8 @@ from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
 
-readme = open('README.rst').read()
-history = open('HISTORY.rst').read().replace('.. :changelog:', '')
+readme = open('README.md').read()
+history = open('HISTORY.md').read()
 
 
 class PyTest(TestCommand):
@@ -33,6 +33,7 @@ setup(
     description='A Python wrapper for working with the Scrapyd API',
     keywords='python-scrapyd-api scrapyd scrapy api wrapper',
     long_description=readme + '\n\n' + history,
+    long_description_content_type='text/markdown',
     author='Darian Moody',
     author_email='mail@djm.org.uk',
     url='https://github.com/djm/python-scrapyd-api',

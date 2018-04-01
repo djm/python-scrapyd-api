@@ -7,7 +7,7 @@ Quick Usage
 
 Please see the README_ for quick usage instructions.
 
-.. _README: https://github.com/djm/python-scrapyd-api/blob/master/README.rst
+.. _README: https://github.com/djm/python-scrapyd-api/blob/master/README.md
 
 Instantiating the wrapper
 -------------------------
