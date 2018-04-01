@@ -12,7 +12,7 @@ from .wrapper import ScrapydAPI
 
 __author__ = 'Darian Moody'
 __email__ = 'mail@djm.org.uk'
-__version__ = '2.1.1'
+__version__ = '2.1.2'
 __license__ = 'BSD 2-Clause'
 __copyright__ = 'Copyright 2014 Darian Moody'
 
