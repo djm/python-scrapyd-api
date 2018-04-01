@@ -1,12 +1,6 @@
 # python-scrapyd-api
 
-[![The PyPI version](https://badge.fury.io/py/python-scrapyd-api.png)][pypi]
-
-[![Build status on Travis-CI](https://travis-ci.org/djm/python-scrapyd-api.png?branch=master)](https://travis-ci.org/djm/python-scrapyd-api)
-
-[![Coverage status on Coveralls](https://coveralls.io/repos/djm/python-scrapyd-api/badge.png)](https://coveralls.io/r/djm/python-scrapyd-api)
-
-[![Documentation status on ReadTheDocs](https://readthedocs.org/projects/python-scrapyd-api/badge/?version=latest)][docs]
+[![The PyPI version](https://badge.fury.io/py/python-scrapyd-api.png)][pypi] [![Build status on Travis-CI](https://travis-ci.org/djm/python-scrapyd-api.png?branch=master)](https://travis-ci.org/djm/python-scrapyd-api) [![Coverage status on Coveralls](https://coveralls.io/repos/djm/python-scrapyd-api/badge.png)](https://coveralls.io/r/djm/python-scrapyd-api) [![Documentation status on ReadTheDocs](https://readthedocs.org/projects/python-scrapyd-api/badge/?version=latest)][docs]
 
 A Python wrapper for working with [Scrapyd][scrapyd]'s [API][scrapyd-api-docs].
 
