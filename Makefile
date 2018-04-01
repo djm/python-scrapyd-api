@@ -39,7 +39,12 @@ docs:
 	open docs/build/html/index.html
 
 release: clean
-	python3 setup.py sdist bdist_wheel upload
+	python3 setup.py sdist bdist_wheel
+	twine upload dist/*
+
+test-release: clean
+	python3 setup.py sdist bdist_wheel
+	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
 dist: clean
 	python3 setup.py sdist bdist_wheel

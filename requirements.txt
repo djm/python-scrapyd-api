@@ -2,7 +2,8 @@
 requests==2.4.1
 
 # Development
-wheel==0.24.0
+wheel
+twine
 
 # Docs
 sphinx==1.2.3
