@@ -39,40 +39,40 @@ Ready to contribute? Here's how to set up `python-scrapyd-api` for local develop
 
 1. Fork the `python-scrapyd-api` repo on GitHub.
 
-2. Clone your fork locally::
+2. Clone your fork locally:
 
-    $ git clone git@github.com:your_name_here/python-scrapyd-api.git
+        $ git clone git@github.com:your_name_here/python-scrapyd-api.git
 
-3. Install your local copy into a `virtualenv`. Assuming you have `virtualenvwrapper` installed, this is how you set up your fork for local development::
+3. Install your local copy into a `virtualenv`. Assuming you have `virtualenvwrapper` installed, this is how you set up your fork for local development:
 
-    $ mkvirtualenv python-scrapyd-api
-    $ cd python-scrapyd-api/
-    $ python setup.py develop
+        $ mkvirtualenv python-scrapyd-api
+        $ cd python-scrapyd-api/
+        $ python setup.py develop
 
 4. Install the requirements needed to develop on `python-scrapyd-api`. That
-   includes doc writing and testing tools::
+   includes doc writing and testing tools:
 
-    $ pip install -r requirements.txt
+        $ pip install -r requirements.txt
 
 
-5. Create a branch for local development::
+5. Create a branch for local development:
 
-    $ git checkout -b name-of-your-bugfix-or-feature
+        $ git checkout -b name-of-your-bugfix-or-feature
 
    Now you can make your changes locally.
 
 6. When you're done making changes, check the following things:
 
-   a. That your changes pass the flake8 linter (use common sense though)::
+   a. That your changes pass the flake8 linter (use common sense though):
 
         $ pip install flake8
         $ flake8 python-scrapyd-api tests
 
-   b. That the tests still run::
+   b. That the tests still run:
 
         $ python setup.py test
 
-   c. That the tests run for all supported versions of Python. This requires tox and having the various versions of Python installed::
+   c. That the tests run for all supported versions of Python. This requires tox and having the various versions of Python installed:
 
         $ pip install tox
         $ tox
@@ -80,7 +80,7 @@ Ready to contribute? Here's how to set up `python-scrapyd-api` for local develop
 7. Add yourself to the `AUTHORS.md` file as a contributor.
 
 8. Commit your changes and push your branch to GitHub. Please use a suitable
-   git commit message (summary line, two line breaks, detailed description)::
+   git commit message (summary line, two line breaks, detailed description):
 
         $ git add .
         $ git commit
@@ -94,20 +94,18 @@ Ready to contribute? Here's how to set up `python-scrapyd-api` for local develop
 To run the tests:
 
 ```bash
-
-    $ python setup.py test
-    # or use PyTest directly:
-    $ py.test
+$ python setup.py test
+# or use PyTest directly:
+$ py.test
 ```
 
 To see coverage:
 
 ```bash
-
-    # In the terminal:
-    $ py.test --cov scrapyd_api tests/
-    # As a browseable HTML report:
-    $ make coverage
+# In the terminal:
+$ py.test --cov scrapyd_api tests/
+# As a browseable HTML report:
+$ make coverage
 
 ```
 
