@@ -4,6 +4,7 @@ requests==2.4.1
 # Development
 wheel
 twine
+bumpversion
 
 # Docs
 sphinx==1.2.3
