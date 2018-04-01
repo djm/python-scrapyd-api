@@ -1,13 +1,10 @@
-Authors
-=======
+# Authors
 
-Initial Work
-------------
+## Initial Work
 
 * Darian Moody (mail@djm.org.uk, github: @djm)
 
-Contributors
-------------
+## Contributors
 
 * Bruce Tang (github: @BruceDone)
 * Tomas Linhart (github: @tlinhart)
