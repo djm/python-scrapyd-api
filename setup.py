@@ -44,6 +44,7 @@ setup(
         'scrapyd_api': 'scrapyd_api'
     },
     include_package_data=True,
+    setup_requires=['setuptools>=38.6.0'],
     install_requires=[
         'requests'
     ],
