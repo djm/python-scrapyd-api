@@ -446,3 +446,25 @@ applicable error message sent back from the Scrapyd API.
 This works by simply checking the JSON return's `status` key and raising
 the exception with the return's `message` value, allowing the developer
 to debug the response.
+
+Daemon status
+~~~~~~~~~~~~~~~~~
+
+.. method:: ScrapydAPI.daemon_status()
+
+Displays the load status of a service. See the `daemonstatus endpoint`_ on Scrapyd's
+documentation.
+
+.. _daemonstatus endpoint: http://scrapyd.readthedocs.org/en/latest/api.html#daemonstatus-json
+
+**Arguments**:
+
+- This method takes no arguments.
+
+**Returns**: *(dict)* A dictionary with keys ``pending``, ``running``,
+``finished`` and ``node_name``.
+
+.. code-block:: python
+
+    >>> scrapyd.daemon_status()
+    {u'finished': 0, u'running': 0, u'pending': 0, u'node_name': u'ScrapyMachine'}

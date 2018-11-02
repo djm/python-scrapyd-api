@@ -118,6 +118,13 @@ True
 [u'ecom_project', u'estate_agent_project', u'car_project']
 ```
 
+**Displays the load status of a service** registered:
+
+```python
+>>> scrapyd.daemon_status()
+{u'finished': 0, u'running': 0, u'pending': 0, u'node_name': u'ScrapyMachine'}
+```
+
 **List all spiders** available to a given project:
 
 ```python
