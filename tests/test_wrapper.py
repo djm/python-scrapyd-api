@@ -321,3 +321,14 @@ def test_request_timeout():
     api = ScrapydAPI('http://httpbin.org/delay/5', timeout=1)
     with pytest.raises(Timeout):
         api.client.get(api.target, timeout=api.timeout)
+
+
+def test_daemon_status():
+    api = ScrapydAPI(HOST_URL)
+    rtn = api.daemon_status()
+    assert isinstance(rtn, dict)
+    assert 'finished' in rtn
+    assert 'running' in rtn
+    assert 'pending' in rtn
+    assert 'node_name' in rtn
+    assert isinstance(rtn['finished'], int)

@@ -187,3 +187,12 @@ class ScrapydAPI(object):
             data['setting'] = setting_params
         json = self.client.post(url, data=data, timeout=self.timeout)
         return json['jobid']
+
+    def daemon_status(self):
+        """
+        Displays the load status of a service.
+        :rtype: dict
+        """
+        url = self._build_url(constants.DAEMON_STATUS_ENDPOINT)
+        json = self.client.get(url, timeout=self.timeout)
+        return json
