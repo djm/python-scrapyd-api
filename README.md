@@ -85,7 +85,7 @@ True
 
 ```python
 >>> scrapyd.list_jobs('project_name')
-# Returns a dict of running, finished and pending job lists.
+# Returns a dictionary of running, finished and pending job lists.
 {
     'pending': [
         {
