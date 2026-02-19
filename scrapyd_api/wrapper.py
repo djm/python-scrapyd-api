@@ -196,3 +196,15 @@ class ScrapydAPI(object):
         url = self._build_url(constants.DAEMON_STATUS_ENDPOINT)
         json = self.client.get(url, timeout=self.timeout)
         return json
+    
+    def status(self, job):
+        """
+        Added in Scrapyd version 1.5.0.
+        Get the status of a job.
+        First class, maps to Scrapyd's status job endpoint.
+        """
+        url = self._build_url(constants.STATUS_ENDPOINT)
+        params = {'job': job}
+        json = self.client.get(url, params=params, timeout=self.timeout)
+        return json['currstate']
+    

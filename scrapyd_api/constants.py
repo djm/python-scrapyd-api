@@ -10,6 +10,9 @@ LIST_SPIDERS_ENDPOINT = 'list_spiders'
 LIST_VERSIONS_ENDPOINT = 'list_versions'
 SCHEDULE_ENDPOINT = 'schedule'
 DAEMON_STATUS_ENDPOINT = 'daemonstatus'
+# status.json endpoint added in 1.5.0
+# Get the status of a job
+STATUS_ENDPOINT = 'status'
 
 DEFAULT_ENDPOINTS = {
     ADD_VERSION_ENDPOINT: '/addversion.json',
@@ -21,7 +24,10 @@ DEFAULT_ENDPOINTS = {
     LIST_SPIDERS_ENDPOINT: '/listspiders.json',
     LIST_VERSIONS_ENDPOINT: '/listversions.json',
     SCHEDULE_ENDPOINT: '/schedule.json',
-    DAEMON_STATUS_ENDPOINT: '/daemonstatus.json'
+    DAEMON_STATUS_ENDPOINT: '/daemonstatus.json',
+    # status.json endpoint added in 1.5.0
+    # Get the status of a job
+    STATUS_ENDPOINT: 'status.json'
 }
 
 FINISHED = 'finished'
