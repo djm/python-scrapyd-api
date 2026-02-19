@@ -3,7 +3,7 @@ requests==2.4.1
 
 # Development
 wheel
-twine
+#twine
 bumpversion
 
 # Docs
